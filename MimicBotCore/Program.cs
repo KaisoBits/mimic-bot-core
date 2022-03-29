@@ -9,9 +9,8 @@ Host.CreateDefaultBuilder(args)
     {
         host.AddUserSecrets<Program>();
     })
-    .ConfigureServices((h, s) =>
+    .ConfigureServices(services =>
     {
-        s.AddDiscord();
-        s.AddHostedService<MimicHostedService>();
-    })
-    .Build().Run();
+        services.AddDiscord();
+        services.AddHostedService<MimicHostedService>();
+    }).Build().Run();

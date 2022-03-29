@@ -1,4 +1,4 @@
-﻿namespace MimicBot.Services;
+﻿namespace MimicBotCore.Services;
 
 public interface ICommandHandler
 {

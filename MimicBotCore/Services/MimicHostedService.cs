@@ -1,12 +1,8 @@
 ﻿using Discord;
-using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MimicBot;
-using MimicBot.Services;
-using MimicBotCommon.Helpers;
 
 namespace MimicBotCore.Services;
 

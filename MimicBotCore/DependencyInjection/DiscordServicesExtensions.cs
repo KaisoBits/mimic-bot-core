@@ -2,27 +2,27 @@
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
-using MimicBot;
-using MimicBot.Services;
+using Microsoft.Extensions.Options;
+using MimicBotCore.Services;
 
-namespace MimicBotCore.DependencyInjection
+namespace MimicBotCore.DependencyInjection;
+
+public static class DiscordServicesExtensions
 {
-    public static class DiscordServicesExtensions
+    public static IServiceCollection AddDiscord(this IServiceCollection services)
     {
-        public static IServiceCollection AddDiscord(this IServiceCollection services)
+        services.Configure<CommandServiceConfig>(cfg =>
         {
-            services.AddSingleton(_ => new DiscordSocketClient());
+            cfg.CaseSensitiveCommands = false;
+            cfg.DefaultRunMode = RunMode.Async;
+            cfg.LogLevel = LogSeverity.Verbose;
+        });
 
-            services.AddSingleton((_) => new CommandService(new CommandServiceConfig
-            {
-                DefaultRunMode = RunMode.Async,
-                LogLevel = LogSeverity.Info,
-                CaseSensitiveCommands = false
-            }));
+        services.AddSingleton<DiscordSocketClient>();
+        services.AddSingleton(s => new CommandService(s.GetRequiredService<IOptions<CommandServiceConfig>>().Value));
 
-            services.AddSingleton<ICommandHandler, CommandHandler>();
+        services.AddSingleton<ICommandHandler, CommandHandler>();
 
-            return services;
-        }
+        return services;
     }
 }

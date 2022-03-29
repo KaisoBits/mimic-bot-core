@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Microsoft.Extensions.Logging;
 
-namespace MimicBotCommon.Helpers;
+namespace MimicBotCore.Helpers;
 
 public class DiscordHelpers
 {
@@ -25,10 +25,10 @@ public class DiscordHelpers
         {
             LogLevel.Debug => LogSeverity.Debug,
             LogLevel.Information => LogSeverity.Info,
-            LogLevel.Warning=> LogSeverity.Warning,
+            LogLevel.Warning => LogSeverity.Warning,
             LogLevel.Error => LogSeverity.Error,
-            LogLevel.Critical =>   LogSeverity.Critical,
-            LogLevel.Trace =>  LogSeverity.Verbose,
+            LogLevel.Critical => LogSeverity.Critical,
+            LogLevel.Trace => LogSeverity.Verbose,
             _ => LogSeverity.Error
         };
     }
