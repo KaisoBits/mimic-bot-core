@@ -67,7 +67,7 @@ public class CommandHandler : ICommandHandler
 
     private Task ProxyLogger(string source, LogMessage msg)
     {
-        _logger.Log(DiscordHelpers.ToLoggerLogSeverity(msg.Severity), msg.Exception, "[Discord - {source}] {message}", source, msg.Message);
+        _logger.Log(DiscordHelpers.ToLoggerLogLevel(msg.Severity), msg.Exception, "[Discord - {source}] {message}", source, msg.Message);
         return Task.CompletedTask;
     }
 }

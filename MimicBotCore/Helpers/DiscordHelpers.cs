@@ -5,7 +5,7 @@ namespace MimicBotCore.Helpers;
 
 public class DiscordHelpers
 {
-    public static LogLevel ToLoggerLogSeverity(LogSeverity logSeverity)
+    public static LogLevel ToLoggerLogLevel(LogSeverity logSeverity)
     {
         return logSeverity switch
         {
