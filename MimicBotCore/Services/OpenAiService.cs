@@ -4,30 +4,7 @@ namespace MimicBotCore.Services;
 
 public class OpenAiService : ICompletionService
 {
-    const string _templateMimick = @"Mimick messages in Polish by generating a new, coherent message based on user's previous messages
-
-Previous:
--nie mogę się doczekać aż zagram tą nową postacią w lidze
--czekam na was na kanale
--ja pierdole xD
--kot mi łazi po klawiaturze
--pomocy!
-
-New: kot mi pierdoli po klawiaturze jak staram się zagrać nową postacią u was na kanale XD pomocy, czekam na kanale! 
-
-Previous:
--nie masz psychy żeby tu przyjść
--nie piję kawy
--jesteś pojebany
--moj ojciec to alkoholik
--nie moge z ciebie
-
-New: Nie pije kawy, bo mój ojciec to alkoholik. No po prostu nie moge z ciebie bo totalnie nie masz psychy żeby tu przyjść, bo jesteś pojebany.
-
-Previous:
-@m
-
-New:";
+    private static readonly string _templateMimick = File.ReadAllText("template.txt");
 
     private readonly OpenAIAPI _api;
 
