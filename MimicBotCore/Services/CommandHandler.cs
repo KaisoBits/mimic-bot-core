@@ -29,7 +29,11 @@ public class CommandHandler : ICommandHandler
 
     public async Task InstallCommandsAsync()
     {
-        await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _serviceProvider);
+        using (var scope = _serviceProvider.CreateScope())
+        {
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), scope.ServiceProvider);
+        }
+
         _logger.LogInformation("Registered Discord commands");
 
         _client.MessageReceived += HandleCommandAsync;
