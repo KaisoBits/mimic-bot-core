@@ -12,5 +12,6 @@ Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
         services.AddDiscord();
+        services.AddAiCompletions();
         services.AddHostedService<MimicHostedService>();
     }).Build().Run();
