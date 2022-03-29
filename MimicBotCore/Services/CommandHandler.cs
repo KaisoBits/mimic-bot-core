@@ -29,7 +29,7 @@ public class CommandHandler : ICommandHandler
 
     public async Task InstallCommandsAsync()
     {
-        await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
+        await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _serviceProvider);
         _logger.LogInformation("Registered Discord commands");
 
         _client.MessageReceived += HandleCommandAsync;
@@ -55,7 +55,7 @@ public class CommandHandler : ICommandHandler
     {
         if (context is ScopedSocketCommandContext scoped)
         {
-            scoped.ServiceScope.Dispose();
+            scoped.Dispose();
         }
 
         return Task.CompletedTask;
