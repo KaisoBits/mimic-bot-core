@@ -28,7 +28,7 @@ public class MimicModule : ModuleBase<ScopedSocketCommandContext>
         _completionService = completionService;
     }
 
-    [Command("test")]
+    [Command("mimic")]
     public async Task Mimic(string user = "self", int limit = 2000, int sample = 6)
     {
         _logger.LogInformation("User '{username}' issued the command '{command}' with '{message}'",
