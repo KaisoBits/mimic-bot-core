@@ -17,12 +17,9 @@ public class MimicModule : ModuleBase<ScopedSocketCommandContext>
     [Command("test")]
     public async Task Mimic(string user = "self")
     {
-        _logger.LogInformation("User '{username}' issued the command - '{command}' with '{message}'", 
-            Context.Message.Author.Username, nameof(Mimic), Context.Message.Content);
+        _logger.LogInformation("User '{username}' issued the command '{command}' with '{message}'",
+            $"{Context.Message.Author.Username}#{Context.Message.Author.Discriminator}", nameof(Mimic), Context.Message.Content);
 
-        if(Emote.TryParse("👍", out Emote result))
-        {
-            await Context.Message.AddReactionAsync(result);
-        }
+        await Context.Message.AddReactionAsync(new Emoji("👍"));
     }
 }
