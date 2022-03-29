@@ -16,15 +16,22 @@ public class ScopedSocketCommandContext : SocketCommandContext, IDisposable
         ServiceScope = serviceScope;
     }
 
-    ~ScopedSocketCommandContext()
-    {
-        Dispose();
-    }
+    ~ScopedSocketCommandContext() => Dispose(false);
 
     public void Dispose()
     {
+        Dispose(true);
+
         GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
 
         ServiceScope.Dispose();
+
+        _disposed = true;
     }
 }
