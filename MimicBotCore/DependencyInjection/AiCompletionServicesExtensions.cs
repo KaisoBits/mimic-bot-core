@@ -12,7 +12,7 @@ public static class AiCompletionServicesExtensions
         services.AddSingleton(s =>
         {
             var config = s.GetRequiredService<IConfiguration>();
-            return new OpenAIAPI(config["openAIApiKey"], new Engine(config["OpenAi:Engine"]));
+            return new OpenAIAPI(config["openAiApiKey"], new Engine(config["OpenAi:Engine"]));
         });
 
         services.AddTransient<ICompletionService, OpenAiService>();
